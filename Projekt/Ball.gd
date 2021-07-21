@@ -4,21 +4,26 @@ extends Area2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var richtung_vec = Vector2(0,1)
+var richtung_vec = Vector2(0,2)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += richtung_vec
-#	pass
 
 
 func _on_Ball_area_entered(area):
-	printt(area.position.x, position.x)
-	richtung_vec = richtung_vec.rotated(PI)
-	pass # Replace with function body.
+	var diverernz = (area.position.x - position.x) / 40
+	richtung_vec = richtung_vec.rotated(PI - diverernz)
+
+
+func _on_Ball_body_entered(body):
+	printt("vor",richtung_vec)
+	if body.is_in_group("Seite"):
+		richtung_vec.x = richtung_vec.x *-1
+	else:
+		richtung_vec.y = richtung_vec.y *-1
+	printt("nach",richtung_vec)	

@@ -19,3 +19,4 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		position.x = event.position.x
 		
+
