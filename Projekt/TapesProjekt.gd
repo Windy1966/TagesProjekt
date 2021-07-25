@@ -8,8 +8,6 @@ var block = preload("res://Bloecke.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for a in range(5):
-		
 	pass # Replace with function body.
 
 

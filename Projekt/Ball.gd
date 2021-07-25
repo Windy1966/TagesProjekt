@@ -1,7 +1,10 @@
 extends Area2D
 
 
-var richtung_vec = Vector2(0,3)
+# Parameter
+var geschwindigkeit = 3
+
+var richtung_vec = Vector2(0,1)
 
 
 func _ready():
@@ -9,12 +12,12 @@ func _ready():
 
 
 func _process(delta):
-	position += richtung_vec
+	position += richtung_vec * geschwindigkeit
 
 
 func _on_Ball_area_entered(area):
 	var diverernz = (area.position.x - position.x) / 40
-	var oben = Vector2.UP * 3
+	var oben = Vector2.UP * geschwindigkeit
 	richtung_vec = oben.rotated(-diverernz)
 
 
