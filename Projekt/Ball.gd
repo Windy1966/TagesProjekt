@@ -1,9 +1,9 @@
 extends Area2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Parameter
+var geschwindigkeit = 3
+
 var richtung_vec = Vector2(0,2)
 
 
@@ -12,7 +12,7 @@ func _ready():
 
 
 func _process(delta):
-	position += richtung_vec
+	position += richtung_vec * geschwindigkeit
 
 
 func _on_Ball_area_entered(area):
