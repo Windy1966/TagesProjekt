@@ -4,7 +4,7 @@ extends Area2D
 # Parameter
 var geschwindigkeit = 3
 
-var richtung_vec = Vector2(0,2)
+var richtung_vec = Vector2(0,1)
 
 
 func _ready():
@@ -17,13 +17,15 @@ func _process(delta):
 
 func _on_Ball_area_entered(area):
 	var diverernz = (area.position.x - position.x) / 40
-	richtung_vec = richtung_vec.rotated(PI - diverernz)
+	var oben = Vector2.UP * geschwindigkeit
+	richtung_vec = oben.rotated(-diverernz)
 
 
 func _on_Ball_body_entered(body):
-	printt("vor",richtung_vec)
 	if body.is_in_group("Seite"):
 		richtung_vec.x = richtung_vec.x *-1
-	else:
+	elif body.is_in_group("oben"):
 		richtung_vec.y = richtung_vec.y *-1
-	printt("nach",richtung_vec)	
+	elif body.is_in_group("Block"):
+		richtung_vec.y = richtung_vec.y *-1
+		body.queue_free()
